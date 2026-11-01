@@ -1,0 +1,25 @@
+<div id="app-layout">
+  <header id="app-header" class="flex-row">
+    <h1>Nombre Del Proyecto</h1>
+  </header>
+
+  <div id="app-medio">
+    <aside id="app-sidebar">
+      <nav>
+        <ul>
+          <li><a routerLink="/home" routerLinkActive="ruta-activa">Home</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <notifications />
+
+    <main id="app-page">
+      <router-outlet />
+    </main>
+  </div>
+
+  <footer id="app-footer">
+    <p>© 2026 - UCU</p>
+  </footer>
+</div>
