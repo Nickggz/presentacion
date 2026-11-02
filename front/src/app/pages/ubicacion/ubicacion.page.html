@@ -14,9 +14,10 @@
 @if (posicion(); as pos) {
   <p>Latitude: {{ pos.coords.latitude }}</p>
   <p>Longitude: {{ pos.coords.longitude }}</p>
-  <p>Precisión: {{ pos.coords.accuracy }} metros</p>
+  <p>Precisión (metros): {{ pos.coords.accuracy }}</p>
   <p>Timestamp: {{ pos.timestamp | date: 'medium' }}</p>
   <p>Altitude(metros): {{ pos.coords.altitude ?? 'No disponible' }}</p>
+  <p>Altitude Accuracy(metros): {{ pos.coords.altitudeAccuracy ?? 'No disponible' }}</p>
   <p>Speed(metros/segundo): {{ pos.coords.speed ?? 'No disponible' }}</p>
   <p>Heading(grados): {{ pos.coords.heading ?? 'No disponible' }}</p>
 }

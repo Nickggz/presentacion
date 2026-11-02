@@ -30,6 +30,20 @@ export class UbicacionPage {
         console.log(posicion.coords.accuracy);
       },
       (error: GeolocationPositionError) => {
+        let mesaje: string;
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            mesaje = 'El usuario ha denegado el acceso a la ubicación';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            mesaje = 'La información de ubicación no está disponible';
+            break;
+          case error.TIMEOUT:
+            mesaje = 'La solicitud para obtener la ubicación ha caducado';
+            break;
+          default:
+            mesaje = 'Error desconocido al obtener la ubicación';
+        }
         console.error('Error obteniendo ubicación:', error.message);
         this.#notificationService.addNotification(
           NOTIFICATION_TYPES.ERROR,
