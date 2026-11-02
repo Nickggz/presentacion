@@ -1,6 +1,18 @@
 <h2>Ubicación</h2>
 
 <ul class="chequeos">
-  <li>Geolocation API soportada: <strong>{{ soportada ? 'Sí' : 'No' }}</strong></li>
-  <li>Contexto seguro (HTTPS o localhost): <strong>{{ contextoSeguro ? 'Sí' : 'No' }}</strong></li>
+  <li>
+    Geolocation API soportada: <strong>{{ soportada ? 'Sí' : 'No' }}</strong>
+  </li>
+  <li>
+    Contexto seguro (HTTPS o localhost): <strong>{{ contextoSeguro ? 'Sí' : 'No' }}</strong>
+  </li>
 </ul>
+
+<button (click)="obtenerUbicacion()">Obtener mi ubicación</button>
+
+@if (latitude !== null && longitude !== null) {
+  <p>Latitude: {{ latitude() }}</p>
+  <p>Longitude: {{ longitude() }}</p>
+  <p>Precisión: {{ accuracy() }} metros</p>
+}
