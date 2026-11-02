@@ -21,3 +21,14 @@
   <p>Speed(metros/segundo): {{ pos.coords.speed ?? 'No disponible' }}</p>
   <p>Heading(grados): {{ pos.coords.heading ?? 'No disponible' }}</p>
 }
+
+<button (click)="iniciarSeguimiento()" [disabled]="seguimientoId() !== null">Seguir</button>
+<button (click)="detenerSeguimiento()" [disabled]="seguimientoId() === null">Detener</button>
+<ul>
+  @for (p of historial(); track p.timestamp) {
+    <li>
+      {{ p.coords.latitude }}, {{ p.coords.longitude }} - {{ p.timestamp | date: 'HH:mm:ss' }}
+    </li>
+  }
+</ul>
+
