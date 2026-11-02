@@ -11,7 +11,7 @@
 
 <button (click)="obtenerUbicacion()">Obtener mi ubicación</button>
 
-@if (latitude !== null && longitude !== null) {
+@if (latitude() !== null && longitude() !== null) {
   <p>Latitude: {{ latitude() }}</p>
   <p>Longitude: {{ longitude() }}</p>
   <p>Precisión: {{ accuracy() }} metros</p>
