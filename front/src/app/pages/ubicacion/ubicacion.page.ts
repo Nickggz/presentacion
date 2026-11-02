@@ -45,10 +45,7 @@ export class UbicacionPage {
             mesaje = 'Error desconocido al obtener la ubicación';
         }
         console.error('Error obteniendo ubicación:', error.message);
-        this.#notificationService.addNotification(
-          NOTIFICATION_TYPES.ERROR,
-          `Error obteniendo ubicación: ${error.message}`,
-        );
+        this.#notificationService.addNotification(NOTIFICATION_TYPES.ERROR, mesaje);
       },
     );
   }
