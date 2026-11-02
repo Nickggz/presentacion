@@ -24,8 +24,8 @@ export class UbicacionPage {
   public seguimientoId = signal<number | null>(null);
   public historial = signal<GeolocationPosition[]>([]);
 
-  constructor(){
-    inject(DestroyRef).onDestroy(()=> {
+  constructor() {
+    inject(DestroyRef).onDestroy(() => {
       this.detenerSeguimiento();
     });
   }
@@ -54,10 +54,10 @@ export class UbicacionPage {
       (error) => {
         this.#mostrarError(error);
         if (error.code === error.PERMISSION_DENIED) {
-          this.detenerSeguimiento()
+          this.detenerSeguimiento();
         }
-
       },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
     );
     this.seguimientoId.set(id);
   }
@@ -69,8 +69,6 @@ export class UbicacionPage {
     }
     this.seguimientoId.set(null);
   }
-
-
 
   #mostrarError(error: GeolocationPositionError): void {
     let mesaje: string;

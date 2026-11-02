@@ -2,7 +2,7 @@ import { Service } from '@angular/core';
 
 @Service()
 export class GeolocationService {
-  public obtenerPosicion(): Promise<GeolocationPosition> {
+  public obtenerPosicion(opciones?: PositionOptions): Promise<GeolocationPosition> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (posicion: GeolocationPosition) => {
@@ -11,6 +11,7 @@ export class GeolocationService {
         (error: GeolocationPositionError) => {
           reject(error);
         },
+        opciones,
       );
     });
   }
@@ -18,6 +19,7 @@ export class GeolocationService {
   public seguirPosicion(
     onPosicion: (posicion: GeolocationPosition) => void,
     onError: (error: GeolocationPositionError) => void,
+    opciones?: PositionOptions,
   ): number {
     return navigator.geolocation.watchPosition(
       (posicion: GeolocationPosition) => {
@@ -26,12 +28,11 @@ export class GeolocationService {
       (error: GeolocationPositionError) => {
         onError(error);
       },
+      opciones,
     );
   }
 
   public detenerSeguimiento(id: number): void {
     navigator.geolocation.clearWatch(id);
   }
-  
-
 }
