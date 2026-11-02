@@ -13,16 +13,12 @@ export class UbicacionPage {
   // La API solo funciona en contexto seguro: HTTPS o localhost
   public readonly contextoSeguro = window.isSecureContext;
 
-  public latitude = signal<number | null>(null);
-  public longitude = signal<number | null>(null);
-  public accuracy = signal<number | null>(null);
+  public posicion = signal<GeolocationPosition | null>(null);
 
   public obtenerUbicacion(): void {
     navigator.geolocation.getCurrentPosition(
       (posicion: GeolocationPosition) => {
-        this.latitude.set(posicion.coords.latitude);
-        this.longitude.set(posicion.coords.longitude);
-        this.accuracy.set(posicion.coords.accuracy);
+        this.posicion.set(posicion);
 
         console.log(posicion.coords.latitude);
         console.log(posicion.coords.longitude);
