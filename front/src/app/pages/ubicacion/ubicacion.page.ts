@@ -1,7 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, signal, inject } from '@angular/core';
+import { NotificationService } from '../../services/notification.service';
+import { NOTIFICATION_TYPES } from '../../model/notifications';
 
 @Component({
-  imports: [],
+  imports: [DatePipe],
   selector: 'app-ubicacion',
   styleUrl: './ubicacion.page.css',
   templateUrl: './ubicacion.page.html',
@@ -12,6 +15,8 @@ export class UbicacionPage {
 
   // La API solo funciona en contexto seguro: HTTPS o localhost
   public readonly contextoSeguro = window.isSecureContext;
+
+  readonly #notificationService = inject(NotificationService);
 
   public posicion = signal<GeolocationPosition | null>(null);
 
@@ -26,6 +31,10 @@ export class UbicacionPage {
       },
       (error: GeolocationPositionError) => {
         console.error('Error obteniendo ubicación:', error.message);
+        this.#notificationService.addNotification(
+          NOTIFICATION_TYPES.ERROR,
+          `Error obteniendo ubicación: ${error.message}`,
+        );
       },
     );
   }
